@@ -613,6 +613,12 @@ public class Jck implements StfPluginInterface {
 				fileContent += "set jck.env.testPlatform.os \"Windows\";\n";
 				fileContent += "set jck.env.testPlatform.systemRoot " + System.getenv("WINDIR") + ";\n";
 			}
+			if (platform.equals("aix")) {
+				// On Windows set the testplatform.os to Windows and set systemRoot, but do not
+				// set the file and path separators (an error is thrown if they are set).
+				fileContent += "set jck.env.runtime.jdwp.VMSuspended No\n";
+				fileContent += "set jck.env.runtime.jdwp.jdwpOpts "-agentlib\:jdwp\=server\=y,transport\=dt_socket,address\=localhost\:35000,suspend\=n";\n";
+			}
 			else {
 				// On other platforms set the testplatform.os to other and set the file and path separators.
 				fileContent += "set jck.env.testPlatform.os \"other\";\n";
