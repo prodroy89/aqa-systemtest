@@ -687,12 +687,12 @@ public class Jck implements StfPluginInterface {
 					throw new StfException(tests + "expects kdcHostname and kdcRealmname. Recheck if the values are proper in the supplied kdc conf file.");
 				}
 				
-				fileContent += "set jck.env.runtime.jgss.krb5ClientPassword " + krb5ClientPassword + ";\n";
-				fileContent += "set jck.env.runtime.jgss.krb5ClientUsername " +  krb5ClientUsername + "/" + KerberosConfig.kdcHostName+'@'+KerberosConfig.kdcRealmName + ";\n";
-				fileContent += "set jck.env.runtime.jgss.krb5ServerPassword " + krb5ServerPassword + ";\n";
-				fileContent += "set jck.env.runtime.jgss.krb5ServerUsername " +  krb5ServerUsername + "/" + KerberosConfig.kdcHostName+'@'+KerberosConfig.kdcRealmName + ";\n";
-				fileContent += "set jck.env.runtime.jgss.kdcHostName " + KerberosConfig.kdcHostName + ";\n";
-				fileContent += "set jck.env.runtime.jgss.kdcRealmName " + KerberosConfig.kdcRealmName + ";\n";
+				fileContent += "set jck.env.runtime.jgss.krb5ClientPassword " + "user2" + ";\n";
+				fileContent += "set jck.env.runtime.jgss.krb5ClientUsername " +  "user2" + "/" + "rtsvc-ubu22x86-hur-1.hursley.ibm.com"+'@'+"RUNTIMES.COM" + ";\n";
+				fileContent += "set jck.env.runtime.jgss.krb5ServerPassword " + "user1" + ";\n";
+				fileContent += "set jck.env.runtime.jgss.krb5ServerUsername " +  "user1" + "/" + "rtsvc-ubu22x86-hur-1.hursley.ibm.com"+'@'+"RUNTIMES.COM" + ";\n";
+				fileContent += "set jck.env.runtime.jgss.kdcHostName " + "rtsvc-ubu22x86-hur-1.hursley.ibm.com" + ";\n";
+				fileContent += "set jck.env.runtime.jgss.kdcRealmName " + "RUNTIMES.COM" + ";\n";
 				
 				extraJvmOptions += "-Djava.security.krb5.conf=" + krbConfFile + " -DKRB5CCNAME=" + test.env().getResultsDir().toString() + File.separator + "krb5.cache" + " -DKRB5_KTNAME=" + test.env().getResultsDir().toString() + File.separator + "krb5.keytab";
 			}	
