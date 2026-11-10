@@ -150,6 +150,18 @@ CC=gcc
 CFLAGS=-fPIC -I$(SOLARIS_PATH) -I$(LINUX_PATH) -I$(SRC_PATH)
 LDFLAGS=-shared 
 
+ifeq ($(PLATFORM),linux_x86-32)
+	CC=gcc
+	CFLAGS=-fPIC -m32 -I$(SOLARIS_PATH) -I$(LINUX_PATH) -I$(SRC_PATH)
+	LDFLAGS=-shared 
+endif
+
+ifeq ($(PLATFORM),windows_x86-32)
+	CC=gcc
+	CFLAGS=-fPIC -m32 -I$(SOLARIS_PATH) -I$(LINUX_PATH) -I$(SRC_PATH)
+	LDFLAGS=-shared 
+endif	
+
 ifeq ($(OS),osx)
 	CC=gcc
 	ifeq ($(ARCH),arm64)
